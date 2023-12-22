@@ -79,10 +79,14 @@ def part2():
     seeds, maps = read_input()
     seeds = [(seeds[i], seeds[i + 1]) for i in range(0, len(seeds), 2)]
     maps = list(map(process_map, maps))
+    alls = []
     for rs, diff in maps:
+        alls.append(seeds)
         nseeds = []
         for start, length in seeds:
             nseeds.extend(map_range(start, length, rs, diff))
         seeds = nseeds
-    return seeds
-    # return min(seeds, key=(lambda x: x[0]))[0]
+    # return seeds
+    alls.append(seeds)
+    return alls
+    return min(seeds, key=(lambda x: x[0]))[0]
